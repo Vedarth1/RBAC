@@ -2,10 +2,15 @@ const express=require("express");
 const app=express();
 //to read and manage cookies sent by the client
 const cookieparser=require('cookie-parser');
+const cors = require("cors");
 
 require('dotenv').config();
 const PORT=process.env.PORT || 4000;
 
+app.use(cors({
+    origin: "*",
+    methods: "GET,POST,PUT,DELETE",
+}));
 app.use(express.json());
 app.use(cookieparser());
 
