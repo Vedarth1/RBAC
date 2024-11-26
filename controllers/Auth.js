@@ -19,37 +19,26 @@ exports.signup=async(req,res)=>{
             });
         }
 
-        if(password===confirmpassword)
-        {
-
-            let hashedpassword;
-            try{
-                hashedpassword=await bcrypt.hash(password,10);
-            }
-            catch(error){
-                return res.status(500).json({
-                    success:false,
-                    message:"Error in hashing password",
-                });
-            }
-
-            //create entry;
-            const user=await User.create({
-                email,password:hashedpassword,role
-            });
-
-            return res.status(200).json({
-                success:true,
-                message:"User Created Successfully",
-            });
+        let hashedpassword;
+        try{
+            hashedpassword=await bcrypt.hash(password,10);
         }
-        else
-        {
-            return res.status(403).json({
+        catch(error){
+            return res.status(500).json({
                 success:false,
-                message:"Password Does not matched!",
+                message:"Error in hashing password",
             });
         }
+
+        //create entry;
+        const user=await User.create({
+            email,password:hashedpassword,role
+        });
+
+        return res.status(200).json({
+            success:true,
+            message:"User Created Successfully",
+        });
     }
     catch(error){
         console.error(error);

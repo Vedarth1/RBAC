@@ -32,9 +32,10 @@ const Login = () => {
 
         if (response.ok)
         {
-            const {token}=data;
+            const { token, user } = data;
+            const role = user.role;
             localStorage.setItem('token', token);
-            navigate('/user');
+            navigate('/profile', { state: { role } });
         }
         else if(response.status===401)
         {

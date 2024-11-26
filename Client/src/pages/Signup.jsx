@@ -7,7 +7,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirm_password, setConfirmPassword] = useState('');
   const [role, setRole] = useState('client'); // Default role is client
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -16,7 +16,7 @@ const SignUp = () => {
   const handleEmailPasswordSignUp = async (e) => {
     e.preventDefault();
     setError('');
-    if (password !== confirmPassword) {
+    if (password !== confirm_password) {
       setError('Passwords do not match.');
       return;
     }
@@ -26,8 +26,8 @@ const SignUp = () => {
     const formData = {
       email,
       password,
-      confirm_password: confirmPassword,
-      role, // Include role in form data
+      confirm_password,
+      role,
     };
 
     try {

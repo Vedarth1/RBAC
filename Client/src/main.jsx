@@ -9,6 +9,8 @@ import App from './App.jsx'
 import ErrorPage from "./pages/Errorpage.jsx";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/Signup.jsx";
+import Profile from "./pages/Profile.jsx";
+import ManageUser from "./pages/ManageUser.jsx";
 import User from "./pages/User.jsx";
 
 const router = createBrowserRouter([
@@ -26,7 +28,15 @@ const router = createBrowserRouter([
     element: <SignUp/>
   },
   {
-    path:"/user",
+    path:"/profile",
+    element: <Profile/>
+  },
+  {
+    path:"/manage-users",
+    element: <ManageUser/>
+  },
+  {
+    path:"/admin/user/:id",
     element: <User/>
   }
 ]);
