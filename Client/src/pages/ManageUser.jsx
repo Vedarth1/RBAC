@@ -5,10 +5,10 @@ import { RingLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 
 const ManageUser = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [updatingUsers, setUpdatingUsers] = useState({}); // Store loading state for each user
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -52,7 +52,7 @@ const ManageUser = () => {
   }, []);
 
   const handleUpdateRole = async (email, newRole) => {
-    setIsUpdating(true);
+    setUpdatingUsers((prev) => ({ ...prev, [email]: true })); // Set loading state for the user
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
@@ -90,24 +90,23 @@ const ManageUser = () => {
       toast.error("Error updating role. Please try again.");
       console.error("Error updating role:", error);
     } finally {
-      setIsUpdating(false); // Stop loading after role update
+      setUpdatingUsers((prev) => ({ ...prev, [email]: false })); // Reset loading state for the user
     }
   };
 
   return (
     <div className="max-w-4xl mx-auto mt-8 px-4">
       <ToastContainer />
-        <h1
-            className="text-2xl font-bold text-pink-500 cursor-pointer"
-            onClick={() => navigate(-1)}
-            >
-            ← Profile
-        </h1>
+      <h1
+        className="text-2xl font-bold text-pink-500 cursor-pointer"
+        onClick={() => navigate(-1)}
+      >
+        ← Profile
+      </h1>
       <h1 className="text-center text-2xl font-bold text-pink-500 underline mb-6">
         Manage Users
       </h1>
 
-      {/* Show loader if data is being fetched */}
       {isLoading ? (
         <div className="flex justify-center items-center">
           <RingLoader color="#e11d48" size={50} />
@@ -129,7 +128,7 @@ const ManageUser = () => {
               >
                 <td className="px-4 py-2 border border-gray-300">{user._id}</td>
                 <td className="px-4 py-2 border border-gray-300">
-                <button
+                  <button
                     onClick={() => navigate(`/admin/user/${user._id}`)}
                     className="text-pink-500 hover:underline"
                   >
@@ -158,7 +157,7 @@ const ManageUser = () => {
                       type="submit"
                       className="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600"
                     >
-                      {isUpdating ? (
+                      {updatingUsers[user.email] ? (
                         <RingLoader color="#fff" size={20} />
                       ) : (
                         "Update"
@@ -176,3 +175,4 @@ const ManageUser = () => {
 };
 
 export default ManageUser;
+
