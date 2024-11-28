@@ -12,6 +12,12 @@
 - Frontend: React.js (with Vite as the build tool)
 - Database: Mongodb
 - ORM: Mongoose
+
+## To access admin use 
+
+- Email: admin@gmail.com
+- password: admin
+
 ## Run Locally
 
 Clone the project
