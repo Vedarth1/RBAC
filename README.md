@@ -18,6 +18,12 @@
 - Email: admin@gmail.com
 - password: admin
 
+<img width="1470" alt="Screenshot 2024-11-28 at 8 18 12 AM" src="https://github.com/user-attachments/assets/8cadbefe-3320-4844-a7bc-6c29dfd64240">
+Manage User
+<img width="1470" alt="Screenshot 2024-11-28 at 8 18 23 AM" src="https://github.com/user-attachments/assets/1e665499-ced7-4aa3-b504-c383be5eb48e">
+See users profile
+<img width="1470" alt="Screenshot 2024-11-28 at 8 18 38 AM" src="https://github.com/user-attachments/assets/3a94ec64-f5c3-4ec0-baa3-ed0285dee58a">
+
 ## Run Locally
 
 Clone the project
